@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DTS Temperature Profile Viewer</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+    <style>
+        /* Optional: Basic styling to center the content */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        #vis {
+            width: 90%;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Interactive DTS Temperature Profile</h1>
+    <p>Use your mouse to pan (click and drag) and scroll wheel to zoom.</p>
+    
+    <div id="vis"></div>
+
+    <script type="text/javascript">
+        // --- IMPORTANT: Change the file path if your JSON file has a different name ---
+        var spec = "dts_temperature_profile_interactive.json";
+        
+        // Configuration for the embed function
+        var config = {
+            actions: false, // Hides the link to the editor
+            tooltip: {
+                sanitizeContent: true
+            }
+        };
+
+        // Load the JSON specification and render the chart
+        vegaEmbed('#vis', spec, config).catch(console.error);
+    </script>
+
+</body>
+</html>
