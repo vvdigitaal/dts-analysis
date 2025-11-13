@@ -1,16 +1,55 @@
-<style>
-    /* Add this to allow the body and HTML to control sizing */
-    html, body {
-        height: 100%; /* Make body take up full viewport height */
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-        text-align: center;
-    }
-    #vis {
-        /* Set width to nearly 100% and height to allow for title/instructions */
-        width: 98%; 
-        height: 85%; /* Adjust this percentage based on how much space the title takes up */
-        margin: 0 auto;
-    }
-</style>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DTS Temperature Profile Viewer</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+    
+    <style>
+        /* Ensures the page elements fill the entire browser window */
+        html, body {
+            height: 100%; 
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        
+        /* Styling for the main heading and instructions */
+        h1 { margin-bottom: 5px; }
+        p { margin-top: 5px; margin-bottom: 10px; }
+
+        /* This is the key to making the plot large: it takes up most of the page's height and width */
+        #vis {
+            width: 98%; 
+            height: 85vh; /* Use viewport height (vh) for reliable sizing */
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Interactive DTS Temperature Profile</h1>
+    <p>Use your mouse to pan (click and drag) and scroll wheel to zoom.</p>
+    
+    <div id="vis"></div>
+
+    <script type="text/javascript">
+        // --- IMPORTANT: Ensure this file name matches your Altair JSON file ---
+        var spec = "dts_temperature_profile_interactive.json";
+        
+        // Configuration for the embed function
+        var config = {
+            actions: false, // Hides the link to the editor/download buttons
+            tooltip: {
+                sanitizeContent: true
+            }
+        };
+
+        // Load the JSON specification and render the chart inside the 'vis' div
+        vegaEmbed('#vis', spec, config).catch(console.error);
+    </script>
+
+</body>
+</html>
